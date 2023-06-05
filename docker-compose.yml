@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  dev-database:
+    image: postgres:15.0
+    container_name: dev-database
+    ports:
+      - 5434:5432
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abcd@123
+      POSTGRES_DB: nodeDb
+    networks:
+      - nestjs-networks
+networks: 
+  nestjs-networks:
+
+
+# docker compose up -d 
+# docker exec -it dev-database bash
+# psql -U postgres -W nodeDb
+# U: username W database name
+# \dt
+# npx prisma studio
