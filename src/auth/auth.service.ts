@@ -45,6 +45,7 @@ export class AuthService {
     if (!passwordMatched) {
       throw new ForbiddenException('Incorrect password');
     }
+    delete user.hashedPassword;
     return user;
   }
 }
