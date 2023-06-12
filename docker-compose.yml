@@ -12,13 +12,25 @@ services:
       POSTGRES_DB: nodeDb
     networks:
       - nestjs-networks
-networks: 
+  #Create another container for "TEST"
+  test-database:
+    image: postgres:15.0
+    container_name: test-database
+    ports:
+      - 5435:5432
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abcd@123
+      POSTGRES_DB: nodeDb
+    networks:
+      - nestjs-networks
+networks:
   nestjs-networks:
-
-
-# docker compose up -d 
+# docker compose up -d
 # docker exec -it dev-database bash
 # psql -U postgres -W nodeDb
 # U: username W database name
 # \dt
 # npx prisma studio
+# npx dotenv -e .env.test -- prisma studio
